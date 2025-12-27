@@ -271,6 +271,3 @@ export const deleteScheduleEvent = async (eventId: string): Promise<boolean> => 
   }
 };
 
-/**
- * TASKS FUNCTIONS
- */

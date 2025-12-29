@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { User, Session } from '@supabase/supabase-js';
+import { createUserProfile } from '../services/database';
 
 interface AuthContextType {
   user: User | null;
@@ -58,8 +59,16 @@ export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
       
       console.log('Auth signup successful:', data);
       
-      // Tự động đăng nhập sau khi đăng ký thành công
+      // Tạo user profile trong bảng users (backup nếu trigger không chạy)
       if (data.user) {
+        console.log('Creating user profile with email:', data.user.email || email);
+        const profileCreated = await createUserProfile(data.user.id, {
+          email: data.user.email || email,
+          name: data.user.email?.split('@')[0] || 'User'
+        });
+        console.log('User profile created:', profileCreated);
+        
+        // Tự động đăng nhập sau khi đăng ký thành công
         const { data: sessionData, error: signInError } = await supabase.auth.signInWithPassword({ 
           email, 
           password 

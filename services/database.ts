@@ -9,7 +9,7 @@ export const getUserProfile = async (userId: string): Promise<UserProfile | null
   try {
     const { data, error } = await supabase
       .from('users')
-      .select('name')
+      .select('name, email')
       .eq('id', userId)
       .single();
 
@@ -26,16 +26,23 @@ export const createUserProfile = async (
   profile: UserProfile
 ): Promise<boolean> => {
   try {
-    const { error } = await supabase
+    console.log('Attempting to create user profile:', { userId, profile });
+    const { data, error } = await supabase
       .from('users')
       .insert([
         {
           id: userId,
-          name: profile.name
+          name: profile.name,
+          email: profile.email
         }
-      ]);
+      ])
+      .select();
 
-    if (error) throw error;
+    if (error) {
+      console.error('Supabase insert error:', error);
+      throw error;
+    }
+    console.log('User profile created successfully:', data);
     return true;
   } catch (error) {
     console.error('Error creating user profile:', error);

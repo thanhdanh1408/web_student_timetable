@@ -35,6 +35,7 @@ export interface ScheduleEvent {
 
 export interface UserProfile {
   name: string;
+  email?: string;
 }
 
 export const EVENT_COLORS: Record<EventType, string> = {

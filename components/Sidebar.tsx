@@ -6,6 +6,7 @@ import { useAuth } from '../contexts/AuthContext';
 const Sidebar = () => {
   const { signOut } = useAuth();
   
+  // Hàm định nghĩa các mục điều hướng trong thanh bên
   const navItems = [
     { icon: LayoutDashboard, label: 'Tổng quan', path: '/' },
     { icon: Calendar, label: 'Lịch biểu', path: '/calendar' },

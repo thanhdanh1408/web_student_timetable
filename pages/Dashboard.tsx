@@ -163,25 +163,6 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              {/* Priority */}
-              <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-gray-400 mt-1" />
-                <div>
-                  <p className="text-sm text-gray-600 font-medium">Mức độ ưu tiên</p>
-                  <div className={`inline-block px-3 py-1 rounded-full text-sm font-medium mt-1 ${
-                    selectedEvent.priority === 'URGENT' ? 'bg-red-100 text-red-700' :
-                    selectedEvent.priority === 'HIGH' ? 'bg-orange-100 text-orange-700' :
-                    selectedEvent.priority === 'MEDIUM' ? 'bg-blue-100 text-blue-700' :
-                    'bg-gray-100 text-gray-700'
-                  }`}>
-                    {selectedEvent.priority === 'URGENT' ? 'Khẩn cấp' :
-                     selectedEvent.priority === 'HIGH' ? 'Cao' :
-                     selectedEvent.priority === 'MEDIUM' ? 'Trung bình' :
-                     'Thấp'}
-                  </div>
-                </div>
-              </div>
-
               {/* Description */}
               {selectedEvent.description && (
                 <div className="flex items-start gap-3">

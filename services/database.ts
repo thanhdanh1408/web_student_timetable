@@ -1,5 +1,5 @@
 import { supabase } from '../lib/supabase';
-import { Subject, ScheduleEvent, EventType, Priority, UserProfile } from '../types';
+import { Subject, ScheduleEvent, EventType, UserProfile } from '../types';
 
 /**
  * USER PROFILE FUNCTIONS
@@ -182,7 +182,6 @@ export const getScheduleEvents = async (
       startTime: event.start_time,
       endTime: event.end_time,
       type: event.type as EventType,
-      priority: event.priority as Priority,
       isCompleted: event.is_completed
     })) as ScheduleEvent[];
   } catch (error) {
@@ -207,7 +206,6 @@ export const createScheduleEvent = async (
           start_time: event.startTime,
           end_time: event.endTime,
           type: event.type,
-          priority: event.priority,
           is_completed: event.isCompleted
         }
       ])
@@ -225,7 +223,6 @@ export const createScheduleEvent = async (
       startTime: dbEvent.start_time,
       endTime: dbEvent.end_time,
       type: dbEvent.type as EventType,
-      priority: dbEvent.priority as Priority,
       isCompleted: dbEvent.is_completed
     } as ScheduleEvent;
   } catch (error) {
@@ -246,7 +243,6 @@ export const updateScheduleEvent = async (
     if (event.startTime !== undefined) updateData.start_time = event.startTime;
     if (event.endTime !== undefined) updateData.end_time = event.endTime;
     if (event.type !== undefined) updateData.type = event.type;
-    if (event.priority !== undefined) updateData.priority = event.priority;
     if (event.isCompleted !== undefined) updateData.is_completed = event.isCompleted;
     if (event.subjectId !== undefined) updateData.subject_id = event.subjectId;
 

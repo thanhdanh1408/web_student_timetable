@@ -23,10 +23,11 @@ export const AuthProvider = ({ children }: { children?: React.ReactNode }) => {
     // Check Supabase session
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
-      setUser(session?.user ?? null);
+      setUser(session?.user ?? null);     // Có session thì set user
       setLoading(false);
     });
 
+    // Lắng nghe thay đổi auth (login/logout/refresh token)
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);

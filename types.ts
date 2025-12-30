@@ -6,13 +6,6 @@ export enum EventType {
   OTHER = 'OTHER'
 }
 
-export enum Priority {
-  LOW = 'LOW',
-  MEDIUM = 'MEDIUM',
-  HIGH = 'HIGH',
-  URGENT = 'URGENT'
-}
-
 export interface Subject {
   id: string;
   name: string;
@@ -29,7 +22,6 @@ export interface ScheduleEvent {
   startTime: string; // ISO String
   endTime: string; // ISO String
   type: EventType;
-  priority: Priority;
   isCompleted: boolean;
 }
 
@@ -55,9 +47,3 @@ export const EVENT_LABELS: Record<EventType, string> = {
   [EventType.OTHER]: 'Khác',
 };
 
-export const PRIORITY_LABELS: Record<Priority, string> = {
-  [Priority.LOW]: 'Thấp',
-  [Priority.MEDIUM]: 'Trung bình',
-  [Priority.HIGH]: 'Cao',
-  [Priority.URGENT]: 'Khẩn cấp',
-};

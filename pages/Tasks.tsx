@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useScheduleEvents } from '../hooks/useDatabase';
-import { ScheduleEvent, EventType, Priority, EVENT_COLORS, EVENT_LABELS, PRIORITY_LABELS } from '../types';
+import { ScheduleEvent, EventType, EVENT_COLORS, EVENT_LABELS} from '../types';
 import { CheckCircle2, Circle, AlertTriangle, Calendar as CalendarIcon, Filter, Loader2 } from 'lucide-react';
 import { format, parseISO, isPast } from 'date-fns';
 import { vi } from 'date-fns/locale';
@@ -24,14 +24,6 @@ const Tasks = () => {
       if (filter === 'completed') return t.isCompleted;
       return true;
   }).sort((a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime());
-
-  const getPriorityColor = (p: Priority) => {
-      switch(p) {
-          case Priority.URGENT: return 'text-red-600 bg-red-50';
-          case Priority.HIGH: return 'text-orange-600 bg-orange-50';
-          default: return 'text-gray-600 bg-gray-50';
-      }
-  }
 
   if (loading) {
       return <div className="flex justify-center p-10"><Loader2 className="animate-spin text-blue-600"/></div>
@@ -96,9 +88,6 @@ const Tasks = () => {
                                 </div>
                             </div>
 
-                            <div className={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide ${getPriorityColor(task.priority)}`}>
-                                {PRIORITY_LABELS[task.priority]}
-                            </div>
                         </div>
                     );
                 })}

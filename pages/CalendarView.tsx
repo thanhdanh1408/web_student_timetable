@@ -63,7 +63,6 @@ const CalendarView = () => {
           startTime: new Date(newEvent.startTime).toISOString(),
           endTime: new Date(newEvent.endTime).toISOString(),
           type: newEvent.type as EventType,
-          priority: newEvent.priority as any,
           isCompleted: newEvent.isCompleted || false,
           subjectId: newEvent.subjectId
         });
@@ -76,7 +75,6 @@ const CalendarView = () => {
           startTime: new Date(newEvent.startTime).toISOString(),
           endTime: new Date(newEvent.endTime).toISOString(),
           type: newEvent.type as EventType || EventType.CLASS,
-          priority: newEvent.priority as any || 'MEDIUM',
           isCompleted: newEvent.isCompleted || false
         });
       }
